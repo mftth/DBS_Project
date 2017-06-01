@@ -1,4 +1,6 @@
 import csv
+import re
+
 
 with open('american-election-tweets.csv',"rb") as source, open('election.csv',"wb") as result:
     rdr= csv.reader( source, delimiter=';' )
@@ -52,21 +54,32 @@ with open('election.csv',"rb") as f_text, open('text.csv',"wb") as r_text:
            write_text.writerow([r[1]])
 
 
-with open('text.csv', "rb") as f4, open ('hash.csv', "wb") as o4:
+with open('text.csv', "rb") as f4, open ('enthaelt.csv', "wb") as o4:
   read4 = csv.reader( f4, delimiter=';')
   write4 = csv.writer( o4, delimiter=';') 
   
-  write4.writerow(['hashtag_name']) 
+  write4.writerow(['tweet_id', 'hashtag_name']) 
 
+  j = 1
   for r in read4:
+    j = j+1
     for st in range(len(r)):
       s = ''.join(r)
-      h = [i  for i in s.split()  if i.startswith("#") ]
+      h = [i  for i in s.split() if i.startswith("#") ]
       for i in range(len(h)):
-        if "https" in h[i]:
+        if "https" in h[i] :
           continue
         else:
-          write4.writerow([h[i].lower()])
+          h[i] = re.sub(r'[?|!|"|.|,|:|;|)|(|*|-|_]', r'', h[i])
+          write4.writerow([str(j), h[i].lower()])
+          
+
+with open('enthaelt.csv',"rb") as f6, open('hash.csv',"wb") as o6:
+    read6= csv.reader( f6 , delimiter=';' )
+    write6= csv.writer( o6 , delimiter=';' )
+
+    for r in read6:
+      write6.writerow( [r[1]])
 
 
 
@@ -78,4 +91,3 @@ with open('hash.csv', "rb") as f5, open ('hashtags.csv', "wb") as o5:
     else:
       seen.add(line)
       o5.write(line)
-
