@@ -1,6 +1,10 @@
-CREATE TABLE "User"(screenname CHAR(30));
-CREATE TABLE "Hashtag"(hashtagname CHAR(30));
-CREATE TABLE "Tweet"(tweettext CHAR(140), tweetid INT, favouritecount INT, retweetcount INT, originalauthor CHAR(20), truncated BOOLEAN, isquotestatus BOOLEAN, sourceurl CHAR(100), isretweet BOOLEAN, inreplytoscreenname CHAR(20));
-alter table "User" add primary key (screenname);
-alter table "Tweet" add primary key (tweetid);
-alter table "Hashtag" add primary key (hashtagname);
+CREATE TABLE "ENTHAELT"(tweet_id INT, hashtag_name CHAR(30));
+CREATE TABLE "HASHTAG"(hashtag_name CHAR(30));
+CREATE TABLE "POSTET"(tweet_id INT, screen_name CHAR(30), time CHAR(25));
+CREATE TABLE "TWEET"(tweet_id INT, tweet_text CHAR(140), original_author CHAR(20), favourite_count INT, in_reply_to_screen_name CHAR(20), is_quote_status BOOLEAN, is_retweet BOOLEAN, retweet_count INT, truncated BOOLEAN, source_url CHAR(100));
+CREATE TABLE "USER"(screen_name CHAR(30));
+alter table "USER" add primary key (screen_name);
+alter table "TWEET" add primary key (tweet_id);
+alter table "HASHTAG" add primary key (hashtag_name);
+alter table "ENTHAELT" add primary key (tweet_id, hashtag_name);
+alter table "POSTET" add primary key (tweet_id);
