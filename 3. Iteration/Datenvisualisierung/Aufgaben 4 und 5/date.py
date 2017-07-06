@@ -7,8 +7,7 @@ import sys
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
-
-# Aufgabe 4
+ 
  
 with open('date.csv', "rb") as f13, open('hilfdate.csv', "wb") as o13:
   read13= csv.reader( f13 , delimiter=',' )
@@ -56,23 +55,24 @@ with open('andate.csv', "rb") as f16:
     dates.append(int(row[1]))    
 
   pos = arange(412)+.9
-  plt.figure(figsize = (40,16))
+  plt.figure(figsize = (40,60))
   plt.barh(pos, dates, 0.2)
   plt.yticks(pos, hashtags)
-  plt.ylim(0,415)
+  plt.ylim(0, 415)
   plt.xlabel('# Tage')
   plt.ylabel('Hashtags')
   plt.show()
   
-# Aufgabe 5
   
-with open('hilfdate.csv', "rb") as f17, open('trump.csv', "wb") as o17:
+  
+with open('hilfdate.csv', "rb") as f17, open('auswahl.csv', "wb") as o17:
   read17= csv.reader( f17 , delimiter=',' )
   write17= csv.writer( o17 , delimiter=',' )
   l = []
+  h = str(sys.argv[1])   #liest Hashtag aus dem Terminal ein
   for row in read17:
     r = str(row[1])
-    if '#trump2016 ' in r:   # fuegt alle Daten in Liste l, bei denen der entsprechende Hashtag gleich "#trump2016" ist
+    if h in r:   # fuegt alle Daten in Liste l, bei denen der entsprechende Hashtag gleich h ist
       l.append(str(row[2]))
   s = sorted(set(l), key=l.index)  #Duplikate werden entfernt durch Erstellung eines Sets (das die Reihenfolge beibehaelt)
   #sl = list(s)
@@ -82,12 +82,12 @@ with open('hilfdate.csv', "rb") as f17, open('trump.csv', "wb") as o17:
     for r2 in range(0, len(l)):
       if s[r1] == l[r2]:
         d.append(l[r2])
-    n = len(d)                # n entspricht der Haeufigkeit von "#trump2016" an dem Datum s[r1]
+    n = len(d)                # n entspricht der Haeufigkeit vom Hashtag h an dem Datum s[r1]
     write17.writerow([s[r1], n])
 
 
 
-with open('trump.csv', "rb") as f18:
+with open('auswahl.csv', "rb") as f18:
   read18 = csv.reader(f18, delimiter=',')
   daten = []
   anzahl =[]
@@ -100,13 +100,10 @@ with open('trump.csv', "rb") as f18:
   plt.figure(figsize = (60,15))
   plt.bar(range(len(D1)), D1.values(), 0.2)
   plt.xticks(range(len(D1)), D1.keys(), rotation='vertical')
-  plt.xlim(-5,130)
+  plt.xlim(-5, 130)
   plt.xlabel('Datum')
-  plt.ylabel('# Vorkommen vom Hashtag "trump2016"')
+  plt.ylabel('# Vorkommen vom Hashtag' + h)
   plt.show()
-
-
-
 
 
 
