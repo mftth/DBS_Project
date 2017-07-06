@@ -7,7 +7,8 @@ import sys
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
- 
+
+# Aufgabe 4
  
 with open('date.csv', "rb") as f13, open('hilfdate.csv', "wb") as o13:
   read13= csv.reader( f13 , delimiter=',' )
@@ -63,7 +64,7 @@ with open('andate.csv', "rb") as f16:
   plt.ylabel('Hashtags')
   plt.show()
   
-  
+# Aufgabe 5
   
 with open('hilfdate.csv', "rb") as f17, open('trump.csv', "wb") as o17:
   read17= csv.reader( f17 , delimiter=',' )
