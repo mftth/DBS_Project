@@ -55,9 +55,10 @@ with open('andate.csv', "rb") as f16:
     dates.append(int(row[1]))    
 
   pos = arange(412)+.9
-  plt.figure(figsize = (15,15))
-  plt.barh(pos, dates)
+  plt.figure(figsize = (40,16))
+  plt.barh(pos, dates, 0.2)
   plt.yticks(pos, hashtags)
+  plt.ylim(0,415)
   plt.xlabel('# Tage')
   plt.ylabel('Hashtags')
   plt.show()
@@ -95,9 +96,10 @@ with open('trump.csv', "rb") as f18:
    
   D = OrderedDict(zip(daten, anzahl)) # die beiden Listen werden in ein geordnetes Dictionary eingefuegt
   D1 = OrderedDict(reversed(list(D.items()))) #chronologische Reihenfolge wird hergestellt
-  plt.figure(figsize = (60,10))
+  plt.figure(figsize = (60,15))
   plt.bar(range(len(D1)), D1.values(), 0.2)
   plt.xticks(range(len(D1)), D1.keys(), rotation='vertical')
+  plt.xlim(-5,130)
   plt.xlabel('Datum')
   plt.ylabel('# Vorkommen vom Hashtag "trump2016"')
   plt.show()
