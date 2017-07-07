@@ -44,7 +44,7 @@ if __name__ == "__main__":
             wr.writerow([(c[i]+1)])
 
     # in h_cl.csv werden in der 1.Spalte der Hashtagname
-    # und in der 2.Spalte das zugehörige Cluster-Label gespeichert
+    # und in der 2.Spalte das zugehoerige Cluster-Label gespeichert
     with open('anzahl.csv', 'rb') as f1, open('cl.csv', 'rb') as f2, open('h_cl.csv', "wb") as o1:
         rr1 = csv.reader(f1, delimiter= ';')
         rr2 = csv.reader(f2, delimiter= ';')
